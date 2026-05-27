@@ -1,5 +1,6 @@
 package com.example.mytutor
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.activity.enableEdgeToEdge
@@ -24,5 +25,10 @@ class SignUpActivity : AppCompatActivity() {
         val arrayAdpt = ArrayAdapter(this, android.R.layout.simple_spinner_item, roles)
          binding.spiner.adapter = arrayAdpt
 
+        binding.loginBtn.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

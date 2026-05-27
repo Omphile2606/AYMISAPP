@@ -30,7 +30,6 @@
     <androidx.cardview.widget.CardView
         android:layout_width="360sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:layout_gravity="center">
 
 
@@ -75,12 +74,14 @@
                 android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+
                 android:layout_marginTop="20dp">
 
                 <Spinner
                     android:layout_width="330dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/spiner"
+                    android:background="@drawable/boarders"
                     android:layout_gravity="center"
                     android:padding="15dp"/>
 
@@ -119,10 +120,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/register"
-                android:text="Don't have an account?Create Account"
+                android:text="Have an account?Create Account"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="30dp"/>
+
 
         </LinearLayout>
 
