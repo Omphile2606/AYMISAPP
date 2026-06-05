@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FindTutorFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginHorizontal="40dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/btn"
+                android:text="EduPortal"
+                android:textSize="25sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:layout_marginStart="110dp"
+                android:drawableLeft="@drawable/outline_account_circle_24"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:layout_marginStart="16dp"
+                android:drawableLeft="@drawable/outline_chat_bubble_24"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:layout_marginStart="16dp"
+                android:drawableLeft="@drawable/outline_account_circle_24"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:layout_marginTop="38dp"
+            android:layout_marginStart="40dp"
+            android:textColor="@color/btn"
+            android:text="Find Your Perfect Tutor"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:textSize="20sp"
+            android:text="Choose from our curated selection of \ntop-rated academic mentors. Every tutor "/>
+
+
+        <androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="25dp"
+    android:layout_marginHorizontal="40dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="12dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="10sp"
+            android:layout_width="match_parent"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:text="subject"/>
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="10sp"
+            android:layout_width="match_parent"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:text="Location"/>
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/btn"
+            app:cornerRadius="5dp"
+            android:text="Apply  Fliters"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeTable"
+            android:layout_marginStart="28dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginTop="30dp"/>
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>

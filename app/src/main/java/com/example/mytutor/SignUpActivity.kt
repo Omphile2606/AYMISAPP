@@ -2,6 +2,7 @@ package com.example.mytutor
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -21,14 +22,20 @@ class SignUpActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val roles = arrayOf("student","tutor","admin")
-        val arrayAdpt = ArrayAdapter(this, android.R.layout.simple_spinner_item, roles)
-         binding.spiner.adapter = arrayAdpt
+
 
         binding.loginBtn.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
+        binding.login.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+
+        }
     }
+
+
 }
