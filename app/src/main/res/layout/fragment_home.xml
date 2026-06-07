@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
-                android:layout_marginStart="110dp"
+                android:layout_marginStart="90dp"
                 android:drawableLeft="@drawable/outline_account_circle_24"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -74,10 +74,12 @@
                     android:textSize="25sp"/>
 
                 <TextView
+                    android:id="@+id/findtutor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:layout_marginTop="10dp"
+                    android:clickable="true"
                     android:text="Find a tutor now ->"
                     android:textSize="18sp"/>
             </LinearLayout>

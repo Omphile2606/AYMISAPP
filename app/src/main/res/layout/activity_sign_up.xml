@@ -37,21 +37,23 @@
         android:layout_marginHorizontal="40dp"/>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
+        android:layout_gravity="center"
         android:layout_marginTop="24dp"
         app:cardCornerRadius="8dp"
         android:backgroundTint="#F0EBFA">
         <LinearLayout
-            android:layout_width="336dp"
+            android:layout_width="306dp"
             android:layout_height="wrap_content"
 
             android:orientation="horizontal"
             android:padding="5dp">
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="151dp"
+                android:id="@+id/student"
+                android:layout_width="141dp"
                 android:layout_height="wrap_content"
                 android:text="I am a student"
                 android:textColor="@color/btn"
@@ -60,7 +62,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/tutor"
-                android:layout_width="151dp"
+                android:layout_width="141dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:backgroundTint="#F0EBFA"
@@ -81,7 +83,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/textInput"
             android:inputType="text"
-            android:text="full name"/>
+            android:hint="full name"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -94,7 +96,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/textInput"
             android:inputType="textEmailAddress"
-            android:text="Email"/>
+            android:hint="Email"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -108,7 +110,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/textInput"
             android:inputType="textPassword"
-            android:text="Password"/>
+            android:hint="Password"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
