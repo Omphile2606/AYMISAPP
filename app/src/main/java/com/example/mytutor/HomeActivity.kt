@@ -28,7 +28,7 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.leason -> {
-//                    replaceFragment(LeasonsFragment())
+                    replaceFragment(BookingFragment())
                     true
                 }
                 R.id.stats -> {

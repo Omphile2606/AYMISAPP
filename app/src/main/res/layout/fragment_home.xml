@@ -73,12 +73,13 @@
                     android:textColor="@color/white"
                     android:textSize="25sp"/>
 
-                <TextView
+                <Button
                     android:id="@+id/findtutor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
+                    android:backgroundTint="@color/btn"
                     android:clickable="true"
                     android:text="Find a tutor now ->"
                     android:textSize="18sp"/>

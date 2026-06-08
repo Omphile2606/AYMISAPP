@@ -52,9 +52,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
                 android:text="Book a Session"
+                android:textStyle="bold"
                 android:textSize="34sp" />
             <TextView
                 android:layout_width="wrap_content"
@@ -67,7 +68,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
+                android:layout_marginHorizontal="20dp"
                 app:cardCornerRadius="15dp"
                 android:layout_marginTop="20dp">
                 <LinearLayout
@@ -78,6 +79,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="10dp"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
                         android:text="Select a Subject"/>
 
                     <LinearLayout
@@ -87,7 +92,7 @@
 
                         <RadioGroup
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" >
+                            android:layout_height="wrap_content" >
                             <RadioButton
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -95,6 +100,8 @@
                                 android:drawableRight="@drawable/math_formula_svgrepo_com"
                                 android:text="Mathematics"
                                 android:layout_marginHorizontal="10dp"
+                                android:paddingVertical="15dp"
+                                android:paddingHorizontal="15dp"
                                 android:layout_marginTop="10dp" />
                             <RadioButton
                                 android:layout_width="match_parent"
@@ -102,13 +109,18 @@
                                 android:background="@drawable/boarders"
                                 android:drawableRight="@drawable/science_svgrepo_com"
                                 android:text="Science"
+                                android:paddingVertical="15dp"
+                                android:paddingHorizontal="15dp"
                                 android:layout_marginHorizontal="10dp"
                                 android:layout_marginTop="10dp" />
                             <RadioButton
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/boarders"
+                                android:drawableRight="@drawable/science_svgrepo_com"
                                 android:text="English"
+                                android:paddingVertical="15dp"
+                                android:paddingHorizontal="15dp"
                                 android:layout_marginHorizontal="10dp"
                                 android:layout_marginTop="10dp" />
 
@@ -116,6 +128,43 @@
                     </LinearLayout>
 
                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginHorizontal="20dp"
+                app:cardCornerRadius="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="25dp"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="15dp">
+
+                    <!-- Available Tutors -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Select Date"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                    <CalendarView
+                        android:id="@+id/calendarView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:nestedScrollingEnabled="false" />
+
+
+                </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
