@@ -6,14 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".BookingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="5dp"
-                android:text="Select your subject, find a tutor, and pick a time that works for you.         "
+                android:text="Select your subject, find a tutor, and pick a time that works for you."
                 android:textSize="14sp" />
 
             <androidx.cardview.widget.CardView
@@ -79,54 +78,46 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="10dp"
                         android:textStyle="bold"
                         android:textSize="20sp"
                         android:text="Select a Subject"/>
 
-                    <LinearLayout
+                    <RadioGroup
+                        android:id="@+id/subjectGroup"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <RadioGroup
+                        android:layout_height="wrap_content" >
+                        <RadioButton
+                            android:id="@+id/radioMath"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
-                            <RadioButton
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/boarders"
-                                android:drawableRight="@drawable/math_formula_svgrepo_com"
-                                android:text="Mathematics"
-                                android:layout_marginHorizontal="10dp"
-                                android:paddingVertical="15dp"
-                                android:paddingHorizontal="15dp"
-                                android:layout_marginTop="10dp" />
-                            <RadioButton
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/boarders"
-                                android:drawableRight="@drawable/science_svgrepo_com"
-                                android:text="Science"
-                                android:paddingVertical="15dp"
-                                android:paddingHorizontal="15dp"
-                                android:layout_marginHorizontal="10dp"
-                                android:layout_marginTop="10dp" />
-                            <RadioButton
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/boarders"
-                                android:drawableRight="@drawable/science_svgrepo_com"
-                                android:text="English"
-                                android:paddingVertical="15dp"
-                                android:paddingHorizontal="15dp"
-                                android:layout_marginHorizontal="10dp"
-                                android:layout_marginTop="10dp" />
-
-                        </RadioGroup>
-                    </LinearLayout>
-
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/boarders"
+                            android:drawableRight="@drawable/math_formula_svgrepo_com"
+                            android:text="Mathematics"
+                            android:paddingVertical="15dp"
+                            android:paddingHorizontal="15dp"
+                            android:layout_marginTop="10dp" />
+                        <RadioButton
+                            android:id="@+id/radioScience"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/boarders"
+                            android:drawableRight="@drawable/science_svgrepo_com"
+                            android:text="Science"
+                            android:paddingVertical="15dp"
+                            android:paddingHorizontal="15dp"
+                            android:layout_marginTop="10dp" />
+                        <RadioButton
+                            android:id="@+id/radioEnglish"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/boarders"
+                            android:drawableRight="@drawable/science_svgrepo_com"
+                            android:text="English"
+                            android:paddingVertical="15dp"
+                            android:paddingHorizontal="15dp"
+                            android:layout_marginTop="10dp" />
+                    </RadioGroup>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -144,11 +135,9 @@
                     android:orientation="vertical"
                     android:paddingHorizontal="15dp">
 
-                    <!-- Available Tutors -->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
                         android:layout_marginTop="20dp"
                         android:text="Select Date"
                         android:textSize="20sp"
@@ -157,20 +146,15 @@
                         android:id="@+id/calendarView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
                         android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
                         android:nestedScrollingEnabled="false" />
-
-
                 </LinearLayout>
-
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
+                android:layout_marginHorizontal="20dp"
                 app:cardCornerRadius="15dp"
                 android:layout_marginTop="20dp">
                 <LinearLayout
@@ -182,29 +166,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="10dp"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
                         android:text="Select a Tutor"/>
 
-                    <LinearLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ListView
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tutorNameInput"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
+                            android:layout_height="wrap_content"
+                            android:hint="Enter Tutor Name"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-
-
-
-
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBookNow"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40dp"
+                android:text="Book Now"
+                android:backgroundTint="@color/btn"
+                app:cornerRadius="10dp"/>
 
         </LinearLayout>
     </ScrollView>
-
-
 
 </RelativeLayout>

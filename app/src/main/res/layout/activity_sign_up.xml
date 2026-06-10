@@ -79,6 +79,7 @@
         android:layout_marginTop="36dp"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/textInput"
@@ -92,6 +93,7 @@
         android:layout_marginTop="26dp"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/textInput"
@@ -106,6 +108,7 @@
         app:passwordToggleEnabled="true"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/textInput"
