@@ -1,5 +1,6 @@
 package com.example.mytutor
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -7,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.mytutor.databinding.ActivityLoginBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -18,6 +21,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         databaseHelper = DatabaseHelper(this)
+
+        val sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -35,6 +40,25 @@ class LoginActivity : AppCompatActivity() {
             }
 
             if (databaseHelper.checkUser(email, password)) {
+                val user = databaseHelper.getUser(email)
+                if (user != null) {
+                    val editor = sharedPreferences.edit()
+                    editor.putString("userName", user.fullName)
+                    editor.putString("userEmail", user.email)
+                    editor.putString("userRole", user.role)
+                    editor.putBoolean("isLoggedIn", true)
+                    
+                    // Increment streak every login
+                    val currentStreak = sharedPreferences.getInt("streak", 0)
+                    editor.putInt("streak", currentStreak + 1)
+                    
+                    // Increment hours by 30 mins (0.5 hours) every login
+                    val currentHours = sharedPreferences.getFloat("loginHours", 0f)
+                    editor.putFloat("loginHours", currentHours + 0.5f)
+
+                    editor.apply()
+                }
+
                 val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
                 finish()

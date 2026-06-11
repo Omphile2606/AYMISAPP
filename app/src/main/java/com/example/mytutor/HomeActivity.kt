@@ -32,7 +32,7 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.stats -> {
-//                    replaceFragment(StatsFragment())
+                    replaceFragment(StatsFragment())
                     true
                 }
                 R.id.profile -> {

@@ -6,7 +6,7 @@
         android:title="home"/>
     <item android:id="@+id/leason"
         android:icon="@drawable/outline_assignment_24"
-        android:title="leasons"/>
+        android:title="Booking"/>
     <item android:id="@+id/stats"
         android:icon="@drawable/outline_bar_chart_24"
         android:title="stats"/>
