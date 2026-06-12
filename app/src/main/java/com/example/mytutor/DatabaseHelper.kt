@@ -9,7 +9,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     companion object {
         private const val DATABASE_NAME = "MyTutor.db"
-        private const val DATABASE_VERSION = 2
+        private const val DATABASE_VERSION = 3
 
         // User table
         const val TABLE_USERS = "users"
@@ -49,6 +49,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db?.execSQL(createBookingTable)
 
         preloadTutors(db)
+        preloadStudents(db)
     }
 
     private fun preloadTutors(db: SQLiteDatabase?) {
@@ -66,6 +67,21 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             values.put(COLUMN_PASSWORD, tutor[2])
             values.put(COLUMN_ROLE, tutor[3])
             values.put(COLUMN_BIO, tutor[4])
+            db?.insert(TABLE_USERS, null, values)
+        }
+    }
+
+    private fun preloadStudents(db: SQLiteDatabase?) {
+        val students = arrayOf(
+            arrayOf("Alex Johnson", "alex@student.com", "password123", "Student"),
+            arrayOf("Emma Wilson", "emma@student.com", "password123", "Student")
+        )
+        for (student in students) {
+            val values = ContentValues()
+            values.put(COLUMN_FULL_NAME, student[0])
+            values.put(COLUMN_EMAIL, student[1])
+            values.put(COLUMN_PASSWORD, student[2])
+            values.put(COLUMN_ROLE, student[3])
             db?.insert(TABLE_USERS, null, values)
         }
     }
@@ -152,6 +168,24 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return bookings
     }
 
+    fun getBookingsForTutor(tutorName: String): List<Booking> {
+        val bookings = mutableListOf<Booking>()
+        val db = this.readableDatabase
+        val cursor = db.query(TABLE_BOOKINGS, null, "$COLUMN_TUTOR_NAME = ?", arrayOf(tutorName), null, null, null)
+        
+        if (cursor.moveToFirst()) {
+            do {
+                val date = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE))
+                val subject = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_SUBJECT))
+                val studentName = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_STUDENT_NAME))
+                bookings.add(Booking(date, subject, tutorName, studentName))
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        db.close()
+        return bookings
+    }
+
     fun getAllTutors(): List<String> {
         val tutorList = mutableListOf<String>()
         val db = this.readableDatabase
@@ -166,6 +200,22 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         cursor.close()
         db.close()
         return tutorList
+    }
+
+    fun getAllStudents(): List<String> {
+        val studentList = mutableListOf<String>()
+        val db = this.readableDatabase
+        val query = "SELECT $COLUMN_FULL_NAME FROM $TABLE_USERS WHERE $COLUMN_ROLE = 'Student'"
+        val cursor = db.rawQuery(query, null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                studentList.add(cursor.getString(0))
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        db.close()
+        return studentList
     }
 
     fun getTutorBio(name: String): String {

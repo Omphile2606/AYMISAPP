@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F8F9FA"
+    tools:context=".TutorHomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Top Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginHorizontal="30dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/btn"
+                android:text="AYIMS"
+                android:textStyle="bold"
+                android:textSize="22sp"/>
+
+            <TextView
+                android:id="@+id/chatIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                app:drawableStartCompat="@drawable/outline_chat_bubble_24"
+                app:drawableTint="@color/black"/>
+
+            <TextView
+                android:id="@+id/profileIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:drawableStartCompat="@drawable/outline_account_circle_24"
+                app:drawableTint="@color/black"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/welcomeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="30dp"
+            android:textColor="@color/black"
+            android:text="Welcome Tutor, \nAlex! 👋"/>
+
+        <!-- Stats Grid -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="1"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="22dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Students"
+                        android:textSize="12sp"
+                        android:textColor="#757575"/>
+                    <TextView
+                        android:id="@+id/totalStudentsCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/btn"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hours Taught"
+                        android:textSize="12sp"
+                        android:textColor="#757575"/>
+                    <TextView
+                        android:id="@+id/hoursTaughtCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="45.5"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="#4CAF50"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </GridLayout>
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginHorizontal="30dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            app:cardCornerRadius="16dp"-->
+<!--            app:cardElevation="2dp"-->
+<!--            app:cardBackgroundColor="@color/btn">-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:padding="20dp"-->
+<!--                android:gravity="center_vertical">-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Weekly Earnings"-->
+<!--                        android:textColor="#D1D1D1"-->
+<!--                        android:textSize="12sp"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/earningsAmount"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="$1,240.00"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="22sp"-->
+<!--                        android:textStyle="bold"/>-->
+<!--                </LinearLayout>-->
+<!--                <Button-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Withdraw"-->
+<!--                    android:textSize="12sp"-->
+<!--                    android:backgroundTint="@color/white"-->
+<!--                    android:textColor="@color/btn"-->
+<!--                    style="@style/Widget.MaterialComponents.Button.TextButton"/>-->
+<!--            </LinearLayout>-->
+<!--        </androidx.cardview.widget.CardView>-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upcoming Sessions"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            android:textColor="@color/black"/>
+
+        <ListView
+            android:id="@+id/tutorSessionListView"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="10dp"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            tools:listitem="@layout/sessioninfor"/>
+    </LinearLayout>
+
+</ScrollView>

@@ -10,36 +10,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="17dp"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="30dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textColor="@color/btn"
-                android:text="EduPortal"
-                android:textSize="25sp"/>
+                android:text="AYIMS"
+                android:textStyle="bold"
+                android:textSize="22sp"/>
+
+            <TextView
+                android:id="@+id/chatIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                app:drawableStartCompat="@drawable/outline_chat_bubble_24"
+                app:drawableTint="@color/black"/>
 
             <TextView
                 android:id="@+id/profileIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:layout_marginStart="130dp"
+                android:padding="8dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:drawableLeft="@drawable/outline_account_circle_24"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:layout_marginStart="16dp"
-                android:drawableLeft="@drawable/outline_chat_bubble_24"/>
-
+                app:drawableStartCompat="@drawable/outline_account_circle_24"
+                app:drawableTint="@color/black"/>
         </LinearLayout>
+
 
         <TextView
             android:id="@+id/welcomeText"
