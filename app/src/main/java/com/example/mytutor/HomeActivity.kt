@@ -32,29 +32,43 @@ class HomeActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
-                    if (userRole == "Tutor") {
-                        replaceFragment(TutorHomeFragment())
-                    } else {
-                        replaceFragment(HomeFragment())
+                    when (userRole) {
+                        "Admin" -> replaceFragment(AdminDashboardFragment())
+                        "Tutor" -> replaceFragment(TutorHomeFragment())
+                        else -> replaceFragment(HomeFragment())
                     }
                     true
                 }
                 R.id.leason -> {
-                    if (userRole == "Tutor") {
-                        replaceFragment(TutorScheduleFragment())
-                        true
-                    } else {
-                        replaceFragment(BookingFragment())
-                        true
+                    when (userRole) {
+                        "Admin" -> {
+                            Toast.makeText(this, "Admin can view all sessions on Dashboard", Toast.LENGTH_SHORT).show()
+                            false
+                        }
+                        "Tutor" -> {
+                            replaceFragment(TutorScheduleFragment())
+                            true
+                        }
+                        else -> {
+                            replaceFragment(BookingFragment())
+                            true
+                        }
                     }
                 }
                 R.id.stats -> {
-                    if (userRole == "Tutor") {
-                         Toast.makeText(this, "Tutor Analytics coming soon", Toast.LENGTH_SHORT).show()
-                         false
-                    } else {
-                        replaceFragment(StatsFragment())
-                        true
+                    when (userRole) {
+                        "Admin" -> {
+                            Toast.makeText(this, "Analytics coming soon", Toast.LENGTH_SHORT).show()
+                            false
+                        }
+                        "Tutor" -> {
+                            replaceFragment(TutorStatsFragment())
+                            true
+                        }
+                        else -> {
+                            replaceFragment(StatsFragment())
+                            true
+                        }
                     }
                 }
                 R.id.profile -> {
@@ -66,10 +80,10 @@ class HomeActivity : AppCompatActivity() {
         }
 
         // Set initial fragment based on role
-        if (userRole == "Tutor") {
-            replaceFragment(TutorHomeFragment())
-        } else {
-            replaceFragment(HomeFragment())
+        when (userRole) {
+            "Admin" -> replaceFragment(AdminDashboardFragment())
+            "Tutor" -> replaceFragment(TutorHomeFragment())
+            else -> replaceFragment(HomeFragment())
         }
     }
 

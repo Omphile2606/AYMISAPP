@@ -28,8 +28,13 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         databaseHelper = DatabaseHelper(requireContext())
 
+        val sharedPreferences = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        val studentName = sharedPreferences.getString("userName", "Student") ?: "Student"
+        
+        binding.welcomeText.text = "Welcome back, \n$studentName! 👋"
+
         // Load sessions
-        loadSessions()
+        loadSessions(studentName)
 
         binding.findtutor.setOnClickListener {
             parentFragmentManager.beginTransaction()
@@ -69,12 +74,9 @@ class HomeFragment : Fragment() {
         requireActivity().finish()
     }
 
-    private fun loadSessions() {
-        val sharedPreferences = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
-        val studentName = sharedPreferences.getString("userName", "Anonymous Student") ?: "Anonymous Student"
-        
+    private fun loadSessions(studentName: String) {
         val bookings = databaseHelper.getBookingsForStudent(studentName)
-        val adapter = SessionAdapter(requireContext(), bookings)
+        val adapter = SessionAdapter(requireContext(), bookings, isTutor = false)
         binding.sessionListView.adapter = adapter
     }
 

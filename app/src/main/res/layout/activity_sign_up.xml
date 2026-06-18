@@ -9,133 +9,182 @@
     android:orientation="vertical"
     tools:context=".SignUpActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My-Tutor"
-        android:textColor="@color/btn"
-        android:drawableLeft="@drawable/outline_aspect_ratio_24"
-        android:textAllCaps="true"
-        android:textSize="35sp"
-        android:layout_marginTop="48dp"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create Account"
-        android:textSize="32sp"
-        android:layout_marginTop="23dp"
-        android:layout_marginHorizontal="40dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start your learning adventure today."
-        android:textSize="18sp"
-        android:layout_marginTop="7.1dp"
-        android:layout_marginHorizontal="40dp"/>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="24dp"
-        app:cardCornerRadius="8dp"
-        android:backgroundTint="#F0EBFA">
         <LinearLayout
-            android:layout_width="306dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
 
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/student"
-                android:layout_width="141dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="I am a student"
+                android:text="My-Tutor"
                 android:textColor="@color/btn"
-                app:backgroundTint="@color/white"
-                app:cornerRadius="6dp" />
+                android:drawableLeft="@drawable/outline_aspect_ratio_24"
+                android:textAllCaps="true"
+                android:textSize="35sp"
+                android:layout_marginTop="48dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create Account"
+                android:textSize="32sp"
+                android:layout_marginTop="23dp"
+                android:layout_marginHorizontal="40dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start your learning adventure today."
+                android:textSize="18sp"
+                android:layout_marginTop="7.1dp"
+                android:layout_marginHorizontal="40dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="8dp"
+                android:backgroundTint="#F0EBFA">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/student"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Student"
+                        android:textColor="@color/btn"
+                        app:backgroundTint="@color/white"
+                        app:cornerRadius="6dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:padding="0dp"
+                        android:textSize="12sp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/tutor"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="5dp"
+                        android:backgroundTint="#F0EBFA"
+                        android:text="Tutor"
+                        android:textColor="@color/black"
+                        app:cornerRadius="6dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:padding="0dp"
+                        android:textSize="12sp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/admin"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="5dp"
+                        android:backgroundTint="#F0EBFA"
+                        android:text="Admin"
+                        android:textColor="@color/black"
+                        app:cornerRadius="6dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:padding="0dp"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="36dp"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textInput"
+                    android:inputType="text"
+                    android:hint="Full Name"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="26dp"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textInput"
+                    android:inputType="textEmailAddress"
+                    android:hint="Email"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/bioLayout"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="26dp"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/bio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textInput"
+                    android:inputType="textMultiLine"
+                    android:hint="Bio/Description (e.g. Expert in Math)"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="26dp"
+                app:passwordToggleEnabled="true"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textInput"
+                    android:inputType="textPassword"
+                    android:hint="Password"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/tutor"
-                android:layout_width="141dp"
+                android:id="@+id/loginBtn"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/btn"
+                android:text="Create Account"
+                app:cornerRadius="8dp" />
+
+            <TextView
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:backgroundTint="#F0EBFA"
-                android:text="I am a tutor"
-                android:textColor="@color/black"
-                app:cornerRadius="6dp" />
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="7.1dp"
+                android:clickable="true"
+                android:text="Already have an account? Log In"
+                android:textSize="14sp" />
+
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="36dp"
-        android:layout_height="wrap_content">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/fullName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/textInput"
-            android:inputType="text"
-            android:hint="full name"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="26dp"
-        android:layout_height="wrap_content">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/textInput"
-            android:inputType="textEmailAddress"
-            android:hint="Email"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="26dp"
-        app:passwordToggleEnabled="true"
-        android:layout_height="wrap_content">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/textInput"
-            android:inputType="textPassword"
-            android:hint="Password"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/loginBtn"
-        android:layout_width="match_parent"
-        android:layout_height="61dp"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/btn"
-        android:text="Create Account"
-        app:cornerRadius="8dp" />
-
-    <TextView
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="7.1dp"
-        android:clickable="true"
-        android:text="Already have an account? Log In"
-        android:textSize="14sp" />
-
+    </ScrollView>
 </LinearLayout>

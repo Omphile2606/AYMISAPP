@@ -57,14 +57,13 @@
             android:layout_marginTop="24dp"
             android:layout_marginStart="30dp"
             android:textColor="@color/black"
-            android:text="Welcome Tutor, \nAlex! 👋"/>
+            android:text="Welcome Tutor! 👋"/>
 
         <!-- Stats Grid -->
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="2"
-            android:rowCount="1"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="22dp">
 
@@ -90,7 +89,7 @@
                         android:id="@+id/totalStudentsCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="12"
+                        android:text="0"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         android:textColor="@color/btn"/>
@@ -119,59 +118,100 @@
                         android:id="@+id/hoursTaughtCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="45.5"
+                        android:text="0.0"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         android:textColor="#4CAF50"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Grading Progress"
+                            android:textSize="12sp"
+                            android:textColor="#757575"/>
+                        <TextView
+                            android:id="@+id/gradedSessionsCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0/0 sessions graded"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/btn"/>
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/outline_assignment_24"
+                        app:tint="@color/btn"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
         </GridLayout>
 
-<!--        <androidx.cardview.widget.CardView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginHorizontal="30dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            app:cardCornerRadius="16dp"-->
-<!--            app:cardElevation="2dp"-->
-<!--            app:cardBackgroundColor="@color/btn">-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:padding="20dp"-->
-<!--                android:gravity="center_vertical">-->
-<!--                <LinearLayout-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical">-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Weekly Earnings"-->
-<!--                        android:textColor="#D1D1D1"-->
-<!--                        android:textSize="12sp"/>-->
-<!--                    <TextView-->
-<!--                        android:id="@+id/earningsAmount"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="$1,240.00"-->
-<!--                        android:textColor="@color/white"-->
-<!--                        android:textSize="22sp"-->
-<!--                        android:textStyle="bold"/>-->
-<!--                </LinearLayout>-->
-<!--                <Button-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Withdraw"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:backgroundTint="@color/white"-->
-<!--                    android:textColor="@color/btn"-->
-<!--                    style="@style/Widget.MaterialComponents.Button.TextButton"/>-->
-<!--            </LinearLayout>-->
-<!--        </androidx.cardview.widget.CardView>-->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/btn">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20dp"
+                android:gravity="center_vertical">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Earnings"
+                        android:textColor="#D1D1D1"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/earningsAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0.00"
+                        android:textColor="@color/white"
+                        android:textSize="22sp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Withdraw"
+                    android:textSize="12sp"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/btn"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:layout_width="wrap_content"

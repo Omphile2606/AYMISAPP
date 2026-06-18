@@ -42,6 +42,11 @@ class LoginActivity : AppCompatActivity() {
             if (databaseHelper.checkUser(email, password)) {
                 val user = databaseHelper.getUser(email)
                 if (user != null) {
+                    if (user.status == "Pending" && user.role != "Admin") {
+                        Toast.makeText(this, "Your account is pending approval.", Toast.LENGTH_LONG).show()
+                        return@setOnClickListener
+                    }
+
                     val editor = sharedPreferences.edit()
                     editor.putString("userName", user.fullName)
                     editor.putString("userEmail", user.email)
@@ -57,11 +62,11 @@ class LoginActivity : AppCompatActivity() {
                     editor.putFloat("loginHours", currentHours + 0.5f)
 
                     editor.apply()
-                }
 
-                val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent)
-                finish()
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             } else {
                 Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show()
             }

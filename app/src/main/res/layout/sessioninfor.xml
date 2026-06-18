@@ -17,7 +17,7 @@
         android:padding="16dp"
         android:gravity="center_vertical">
 
-        <!-- Icon Container with a soft background -->
+        <!-- Icon Container -->
         <androidx.cardview.widget.CardView
             android:layout_width="56dp"
             android:layout_height="56dp"
@@ -59,7 +59,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:layout_marginTop="2dp"
-                android:text="Tutor Name" />
+                android:text="Tutor/Student Name" />
 
             <TextView
                 android:id="@+id/Classdate"
@@ -68,8 +68,36 @@
                 android:textSize="13sp"
                 android:textColor="#757575"
                 android:layout_marginTop="4dp"
-                android:text="Scheduled Date"
-                android:drawablePadding="6dp"/>
+                android:text="Scheduled Date" />
+        </LinearLayout>
+
+        <!-- Status Display (Grade & Attendance) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="end">
+
+            <TextView
+                android:id="@+id/attendanceValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="#FF9800"
+                android:text="PRESENT"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/gradeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#4CAF50"
+                android:text="A+"
+                android:layout_marginTop="2dp"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <!-- Subtle arrow indicator -->
@@ -77,6 +105,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:alpha="0.2"
+            android:layout_marginStart="8dp"
             app:srcCompat="@drawable/left_arrow_svgrepo_com"
             android:rotation="180" />
 

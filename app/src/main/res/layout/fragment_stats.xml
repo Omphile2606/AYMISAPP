@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F8F9FA">
@@ -11,14 +12,30 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="My Performance"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginBottom="24dp"/>
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Performance"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_alignParentStart="true"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGenerateReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Report"
+                android:textSize="12sp"
+                app:icon="@drawable/outline_assignment_24"
+                android:layout_alignParentEnd="true"
+                style="@style/Widget.MaterialComponents.Button.TextButton"/>
+        </RelativeLayout>
 
         <!-- Summary Cards -->
         <LinearLayout
@@ -109,7 +126,6 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <!-- Mathematics -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -121,85 +137,60 @@
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
                     android:progress="0"
-                    android:progressDrawable="@drawable/custom_progress"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"/>
 
-                <!-- Physics -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Physics"
+                    android:text="Science"
                     android:textSize="14sp"/>
                 <ProgressBar
-                    android:id="@+id/physicsProgress"
+                    android:id="@+id/scienceProgress"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
                     android:progress="0"
-                    android:progressDrawable="@drawable/custom_progress"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"/>
 
-                <!-- Biology -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Biology"
+                    android:text="English"
                     android:textSize="14sp"/>
                 <ProgressBar
-                    android:id="@+id/biologyProgress"
+                    android:id="@+id/englishProgress"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
                     android:progress="0"
-                    android:progressDrawable="@drawable/custom_progress"
                     android:layout_marginTop="8dp"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Learning Streak -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
+        <!-- Recent Grades -->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:cardCornerRadius="16dp"
-            app:cardBackgroundColor="@color/btn"
-            app:cardElevation="2dp">
-            <LinearLayout
+            android:text="Recent Grades"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp">
+            <ListView
+                android:id="@+id/gradesListView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="20dp"
-                android:gravity="center_vertical">
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/outline_aspect_ratio_24"
-                    app:tint="@color/white"/>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginStart="16dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Current Streak"
-                        android:textColor="#D1D1D1"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:id="@+id/streakCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="5 Days"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                tools:listitem="@layout/sessioninfor"/>
+        </FrameLayout>
 
     </LinearLayout>
 </ScrollView>

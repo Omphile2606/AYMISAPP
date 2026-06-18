@@ -2,6 +2,7 @@ package com.example.mytutor
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -38,34 +39,37 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         binding.student.setOnClickListener {
-            selectedRole = "Student"
-            binding.student.backgroundTintList = ColorStateList.valueOf(Color.WHITE)
-            binding.student.setTextColor(ContextCompat.getColor(this, R.color.btn))
-            
-            binding.tutor.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F0EBFA"))
-            binding.tutor.setTextColor(Color.BLACK)
+            updateRoleSelection("Student")
         }
 
         binding.tutor.setOnClickListener {
-            selectedRole = "Tutor"
-            binding.tutor.backgroundTintList = ColorStateList.valueOf(Color.WHITE)
-            binding.tutor.setTextColor(ContextCompat.getColor(this, R.color.btn))
-            
-            binding.student.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F0EBFA"))
-            binding.student.setTextColor(Color.BLACK)
+            updateRoleSelection("Tutor")
+        }
+
+        binding.admin.setOnClickListener {
+            updateRoleSelection("Admin")
         }
 
         binding.loginBtn.setOnClickListener {
             val fullName = binding.fullName.text.toString().trim()
             val email = binding.email.text.toString().trim()
             val password = binding.password.text.toString().trim()
+            val bio = binding.bio.text.toString().trim()
 
             if (fullName.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val result = databaseHelper.addUser(fullName, email, password, selectedRole)
+            if (selectedRole == "Tutor" && bio.isEmpty()) {
+                Toast.makeText(this, "Please provide a description/bio", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val finalBio = if (selectedRole == "Tutor") bio else ""
+            val status = if (selectedRole == "Admin") "Approved" else "Pending"
+
+            val result = databaseHelper.addUser(fullName, email, password, selectedRole, finalBio, status)
             if (result != -1L) {
                 Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, LoginActivity::class.java)
@@ -73,6 +77,42 @@ class SignUpActivity : AppCompatActivity() {
                 finish()
             } else {
                 Toast.makeText(this, "Registration failed (email might exist)", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun updateRoleSelection(role: String) {
+        selectedRole = role
+        
+        // Reset all buttons
+        val defaultBg = ColorStateList.valueOf(Color.parseColor("#F0EBFA"))
+        val selectedBg = ColorStateList.valueOf(Color.WHITE)
+        val defaultText = Color.BLACK
+        val selectedText = ContextCompat.getColor(this, R.color.btn)
+
+        binding.student.backgroundTintList = defaultBg
+        binding.student.setTextColor(defaultText)
+        binding.tutor.backgroundTintList = defaultBg
+        binding.tutor.setTextColor(defaultText)
+        binding.admin.backgroundTintList = defaultBg
+        binding.admin.setTextColor(defaultText)
+
+        // Highlight selected
+        when (role) {
+            "Student" -> {
+                binding.student.backgroundTintList = selectedBg
+                binding.student.setTextColor(selectedText)
+                binding.bioLayout.visibility = View.GONE
+            }
+            "Tutor" -> {
+                binding.tutor.backgroundTintList = selectedBg
+                binding.tutor.setTextColor(selectedText)
+                binding.bioLayout.visibility = View.VISIBLE
+            }
+            "Admin" -> {
+                binding.admin.backgroundTintList = selectedBg
+                binding.admin.setTextColor(selectedText)
+                binding.bioLayout.visibility = View.GONE
             }
         }
     }

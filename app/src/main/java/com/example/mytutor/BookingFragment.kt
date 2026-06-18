@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -34,15 +33,15 @@ class BookingFragment : Fragment() {
             selectedDate = "$dayOfMonth/${month + 1}/$year"
         }
 
-        // Setup Tutor Dropdown
-        val tutors = databaseHelper.getAllTutors()
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, tutors)
+        // Setup Tutor Dropdown with Bio
+        val tutors = databaseHelper.getAllTutorsWithBio()
+        val adapter = TutorAdapter(requireContext(), tutors)
         binding.tutorAutoComplete.setAdapter(adapter)
 
         binding.tutorAutoComplete.setOnItemClickListener { parent, _, position, _ ->
-            val selectedTutor = parent.getItemAtPosition(position).toString()
-            val bio = databaseHelper.getTutorBio(selectedTutor)
-            binding.tutorBioText.text = bio
+            val selectedTutor = parent.getItemAtPosition(position) as DatabaseHelper.User
+            binding.tutorAutoComplete.setText(selectedTutor.fullName, false)
+            binding.tutorBioText.text = selectedTutor.bio
             binding.tutorBioText.visibility = View.VISIBLE
         }
 
@@ -70,6 +69,14 @@ class BookingFragment : Fragment() {
             val result = databaseHelper.addBooking(selectedDate, subject, tutorName, studentName)
             if (result != -1L) {
                 Toast.makeText(requireContext(), "Booking Successful for $tutorName!", Toast.LENGTH_SHORT).show()
+                
+                // Navigate back to HomeFragment to show the new booking
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.frame_container, HomeFragment())
+                    .commit()
+                
+                // Update bottom navigation selection if possible
+                (activity as? HomeActivity)?.findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottom_navigation)?.selectedItemId = R.id.home
             } else {
                 Toast.makeText(requireContext(), "Booking Failed", Toast.LENGTH_SHORT).show()
             }

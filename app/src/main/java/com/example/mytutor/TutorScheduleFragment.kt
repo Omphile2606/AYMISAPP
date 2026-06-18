@@ -63,9 +63,14 @@ class TutorScheduleFragment : Fragment() {
             val result = databaseHelper.addBooking(selectedDate, subject, tutorName, studentName)
             if (result != -1L) {
                 Toast.makeText(requireContext(), "Lesson scheduled for $studentName!", Toast.LENGTH_SHORT).show()
-                // Clear inputs
-                binding.studentAutoComplete.setText("")
-                binding.tutorSubjectGroup.clearCheck()
+                
+                // Navigate back to TutorHomeFragment to show the new session
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.frame_container, TutorHomeFragment())
+                    .commit()
+                
+                // Update bottom navigation selection
+                (activity as? HomeActivity)?.findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottom_navigation)?.selectedItemId = R.id.home
             } else {
                 Toast.makeText(requireContext(), "Scheduling Failed", Toast.LENGTH_SHORT).show()
             }

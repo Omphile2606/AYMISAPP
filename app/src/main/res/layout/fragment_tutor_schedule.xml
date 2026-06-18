@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="0dp"
         android:padding="24dp">
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,7 +81,6 @@
                     android:layout_height="wrap_content"
                     android:hint="Search for a student"
                     android:padding="12dp"
-                    android:background="@drawable/math_formula_svgrepo_com"
                     android:completionThreshold="1"/>
 
                 <TextView
@@ -112,8 +112,7 @@
                 <CalendarView
                     android:id="@+id/scheduleCalendar"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/Widget.AppCompat.CalendarView"/>
+                    android:layout_height="wrap_content" />
 
                 <Button
                     android:id="@+id/btnScheduleLesson"
