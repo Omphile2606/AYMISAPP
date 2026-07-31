@@ -1,0 +1,15 @@
+- [ ] Update DatabaseHelper.kt
+    - [ ] Increment DATABASE_VERSION to 9
+    - [ ] Add COLUMN_LOCATION to TABLE_USERS
+    - [ ] Update User data class with location
+    - [ ] Update onUpgrade to handle location column
+    - [ ] Update preloading and fetching methods (getUser, getAllTutorsWithBio)
+    - [ ] Implement searchTutors(subject, location)
+- [ ] Create UI Components
+    - [ ] Create layout/item_tutor.xml
+    - [ ] Create TutorRecyclerAdapter.kt
+- [ ] Implement FindTutorFragment logic
+    - [ ] Initialize DatePicker and dropdowns
+    - [ ] Implement "APPLY FILTER" button logic
+    - [ ] Handle booking click event from adapter
+- [ ] Verify functionality

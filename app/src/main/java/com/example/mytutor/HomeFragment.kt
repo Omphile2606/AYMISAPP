@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
         // Load sessions
         loadSessions(studentName)
 
-        binding.findtutor.setOnClickListener {
+        binding.findTutor.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.frame_container, FindTutorFragment())
                 .addToBackStack(null)
@@ -51,11 +51,19 @@ class HomeFragment : Fragment() {
     private fun showLogoutMenu(view: View) {
         val popupMenu = PopupMenu(requireContext(), view)
         popupMenu.menu.add("Logout")
+        popupMenu.menu.add("Profile")
         popupMenu.setOnMenuItemClickListener { item ->
             if (item.title == "Logout") {
                 logout()
                 true
-            } else {
+            }else if(item.title =="Profile"){
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.frame_container, ProfileFragment())
+                    .addToBackStack(null)
+                    .commit()
+                true
+            }
+                else {
                 false
             }
         }

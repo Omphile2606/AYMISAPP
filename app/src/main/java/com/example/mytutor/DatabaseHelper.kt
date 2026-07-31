@@ -10,7 +10,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     companion object {
         private const val DATABASE_NAME = "MyTutor.db"
-        private const val DATABASE_VERSION = 8 // Incremented to 8 to add attendance column
+        private const val DATABASE_VERSION = 9 // Incremented to 9 to add location column
 
         // User table
         const val TABLE_USERS = "users"
@@ -21,6 +21,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         const val COLUMN_ROLE = "role"
         const val COLUMN_BIO = "bio"
         const val COLUMN_STATUS = "status"
+        const val COLUMN_LOCATION = "location"
 
         // Booking table
         const val TABLE_BOOKINGS = "bookings"
@@ -72,10 +73,10 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     private fun preloadTutors(db: SQLiteDatabase?) {
         val tutors = arrayOf(
-            arrayOf("John Smith", "john@tutor.com", "password123", "Tutor", "Expert in Advanced Mathematics with 10 years of experience."),
-            arrayOf("Sarah Jenkins", "sarah@tutor.com", "password123", "Tutor", "Specializes in Organic Chemistry and Biology."),
-            arrayOf("Michael Chen", "michael@tutor.com", "password123", "Tutor", "Native English speaker focused on Literature and Grammar."),
-            arrayOf("Emily Davis", "emily@tutor.com", "password123", "Tutor", "Physics PhD with a passion for teaching high school students.")
+            arrayOf("John Smith", "john@tutor.com", "password123", "Tutor", "Expert in Advanced Mathematics with 10 years of experience.", "Cape Town"),
+            arrayOf("Sarah Jenkins", "sarah@tutor.com", "password123", "Tutor", "Specializes in Organic Chemistry and Biology.", "Johannesburg"),
+            arrayOf("Michael Chen", "michael@tutor.com", "password123", "Tutor", "Native English speaker focused on Literature and Grammar.", "Durban"),
+            arrayOf("Emily Davis", "emily@tutor.com", "password123", "Tutor", "Physics PhD with a passion for teaching high school students.", "Online")
         )
 
         for (tutor in tutors) {
@@ -85,6 +86,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             values.put(COLUMN_PASSWORD, tutor[2])
             values.put(COLUMN_ROLE, tutor[3])
             values.put(COLUMN_BIO, tutor[4])
+            values.put(COLUMN_LOCATION, tutor[5])
             values.put(COLUMN_STATUS, "Approved")
             db?.insert(TABLE_USERS, null, values)
         }
@@ -128,6 +130,13 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 Log.e("DatabaseHelper", "Error adding attendance column: ${e.message}")
             }
         }
+        if (oldVersion < 9) {
+            try {
+                addColumnIfNotExists(db, TABLE_USERS, COLUMN_LOCATION, "TEXT")
+            } catch (e: Exception) {
+                Log.e("DatabaseHelper", "Error adding location column: ${e.message}")
+            }
+        }
     }
 
     private fun addColumnIfNotExists(db: SQLiteDatabase?, tableName: String, columnName: String, columnType: String) {
@@ -148,7 +157,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
     }
 
-    fun addUser(fullName: String, email: String, password: String, role: String, bio: String = "", status: String = "Pending"): Long {
+    fun addUser(fullName: String, email: String, password: String, role: String, bio: String = "", status: String = "Approved", location: String = ""): Long {
         val db = this.writableDatabase
         val values = ContentValues()
         values.put(COLUMN_FULL_NAME, fullName)
@@ -157,6 +166,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         values.put(COLUMN_ROLE, role)
         values.put(COLUMN_BIO, bio)
         values.put(COLUMN_STATUS, status)
+        values.put(COLUMN_LOCATION, location)
         return db.insert(TABLE_USERS, null, values)
     }
 
@@ -178,7 +188,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                     cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EMAIL)),
                     cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ROLE)),
                     cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_BIO)) ?: "",
-                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_STATUS))
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_STATUS)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LOCATION)) ?: ""
                 ))
             } while (cursor.moveToNext())
         }
@@ -225,14 +236,15 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EMAIL)),
                 cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ROLE)),
                 cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_BIO)) ?: "",
-                cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_STATUS)) ?: "Approved"
+                cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_STATUS)) ?: "Approved",
+                cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LOCATION)) ?: ""
             )
         }
         cursor.close()
         return user
     }
 
-    data class User(val fullName: String, val email: String, val role: String, val bio: String = "", val status: String = "Approved")
+    data class User(val fullName: String, val email: String, val role: String, val bio: String = "", val status: String = "Approved", val location: String = "")
     data class Booking(val id: Int, val date: String, val subject: String, val tutorName: String, val studentName: String, val grade: String?, val attendance: String?)
 
     fun addBooking(date: String, subject: String, tutorName: String, studentName: String): Long {
@@ -301,10 +313,19 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return db.update(TABLE_BOOKINGS, values, "$COLUMN_BOOKING_ID = ?", arrayOf(bookingId.toString()))
     }
 
+    fun updateUser(email: String, fullName: String, bio: String, password: String): Int {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(COLUMN_FULL_NAME, fullName)
+        values.put(COLUMN_BIO, bio)
+        values.put(COLUMN_PASSWORD, password)
+        return db.update(TABLE_USERS, values, "$COLUMN_EMAIL = ?", arrayOf(email))
+    }
+
     fun getAllTutorsWithBio(): List<User> {
         val tutorList = mutableListOf<User>()
         val db = this.readableDatabase
-        val query = "SELECT $COLUMN_FULL_NAME, $COLUMN_EMAIL, $COLUMN_ROLE, $COLUMN_BIO, $COLUMN_STATUS FROM $TABLE_USERS WHERE $COLUMN_ROLE = 'Tutor' AND $COLUMN_STATUS = 'Approved'"
+        val query = "SELECT $COLUMN_FULL_NAME, $COLUMN_EMAIL, $COLUMN_ROLE, $COLUMN_BIO, $COLUMN_STATUS, $COLUMN_LOCATION FROM $TABLE_USERS WHERE $COLUMN_ROLE = 'Tutor' AND $COLUMN_STATUS = 'Approved'"
         val cursor = db.rawQuery(query, null)
         if (cursor.moveToFirst()) {
             do {
@@ -313,7 +334,43 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                     cursor.getString(1),
                     cursor.getString(2),
                     cursor.getString(3) ?: "",
-                    cursor.getString(4) ?: "Approved"
+                    cursor.getString(4) ?: "Approved",
+                    cursor.getString(5) ?: ""
+                ))
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return tutorList
+    }
+
+    fun searchTutors(subject: String?, location: String?): List<User> {
+        val tutorList = mutableListOf<User>()
+        val db = this.readableDatabase
+        
+        var selection = "$COLUMN_ROLE = 'Tutor' AND $COLUMN_STATUS = 'Approved'"
+        val selectionArgs = mutableListOf<String>()
+
+        if (!subject.isNullOrEmpty() && subject != "Select Subject") {
+            selection += " AND $COLUMN_BIO LIKE ?"
+            selectionArgs.add("%$subject%")
+        }
+
+        if (!location.isNullOrEmpty() && location != "Select Location") {
+            selection += " AND $COLUMN_LOCATION = ?"
+            selectionArgs.add(location)
+        }
+
+        val cursor = db.query(TABLE_USERS, null, selection, selectionArgs.toTypedArray(), null, null, null)
+        
+        if (cursor.moveToFirst()) {
+            do {
+                tutorList.add(User(
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FULL_NAME)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EMAIL)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ROLE)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_BIO)) ?: "",
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_STATUS)) ?: "Approved",
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LOCATION)) ?: ""
                 ))
             } while (cursor.moveToNext())
         }

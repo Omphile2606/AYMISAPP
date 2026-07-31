@@ -13,25 +13,36 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My-Tutor"
+        android:text="AYI"
+        android:textStyle="bold"
         android:textColor="@color/btn"
-        android:drawableLeft="@drawable/outline_aspect_ratio_24"
+        android:drawableTop="@drawable/outline_aspect_ratio_24"
         android:textAllCaps="true"
         android:textSize="35sp"
         android:layout_marginTop="48dp"
         android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Student app"
+        android:textSize="18sp"
+        android:layout_marginHorizontal="40dp"/>
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome back"
         android:textSize="32sp"
+        android:layout_gravity="center"
+        android:textStyle="bold"
         android:layout_marginTop="23dp"
         android:layout_marginHorizontal="40dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please enter your details to access your dashboard."
+        android:text="Sign in to continue your learning journey"
         android:textSize="18sp"
         android:layout_marginTop="7.1dp"
         android:layout_marginHorizontal="40dp"/>
@@ -71,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/forgot"
-        android:text="forgot Password?"
+        android:text="Forgot Password?"
         android:textColor="@color/btn"
         android:textSize="14sp"
         android:layout_gravity="end"
@@ -88,6 +99,7 @@
         android:text="Sign in"
         android:backgroundTint="@color/btn"
         app:cornerRadius="8dp" />
+
 
     <TextView
         android:layout_width="wrap_content"

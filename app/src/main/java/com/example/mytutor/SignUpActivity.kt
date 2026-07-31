@@ -67,7 +67,7 @@ class SignUpActivity : AppCompatActivity() {
             }
 
             val finalBio = if (selectedRole == "Tutor") bio else ""
-            val status = if (selectedRole == "Admin") "Approved" else "Pending"
+            val status = if (selectedRole == "Admin") "Approved" else "Approved"
 
             val result = databaseHelper.addUser(fullName, email, password, selectedRole, finalBio, status)
             if (result != -1L) {

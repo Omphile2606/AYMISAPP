@@ -2,4 +2,16 @@
     <string name="app_name">MyTutor</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="subjects_array">
+        <item>Mathematics</item>
+        <item>Science</item>
+        <item>English</item>
+        <item>History</item>
+        <item>Geography</item>
+        <item>Computer Science</item>
+        <item>Physics</item>
+        <item>Chemistry</item>
+        <item>Biology</item>
+    </string-array>
 </resources>

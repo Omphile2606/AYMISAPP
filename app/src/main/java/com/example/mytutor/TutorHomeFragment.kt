@@ -46,12 +46,21 @@ class TutorHomeFragment : Fragment() {
     private fun showLogoutMenu(view: View) {
         val popupMenu = PopupMenu(requireContext(), view)
         popupMenu.menu.add("Logout")
+        popupMenu.menu.add("Profile")
         popupMenu.setOnMenuItemClickListener { item ->
-            if (item.title == "Logout") {
-                logout()
-                true
-            } else {
-                false
+            when (item.title) {
+                "Logout" -> {
+                    logout()
+                    true
+                }
+                "Profile" -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.frame_container, ProfileFragment())
+                        .addToBackStack(null)
+                        .commit()
+                    true
+                }
+                else -> false
             }
         }
         popupMenu.show()

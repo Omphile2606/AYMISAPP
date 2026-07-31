@@ -58,146 +58,73 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
                 android:text="Book a Session"
+                android:layout_gravity="center"
                 android:textStyle="bold"
                 android:textSize="34sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="5dp"
-                android:text="Select your subject, find a tutor, and pick a time that works for you."
-                android:textSize="14sp" />
 
-            <androidx.cardview.widget.CardView
+
+<!--            Select Subject Dropdown -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                app:cardCornerRadius="15dp"
-                android:layout_marginTop="20dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="10dp"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:text="Select a Subject"/>
+                android:layout_marginTop="20dp"
+                android:hint="Select Subject">
 
-                    <RadioGroup
-                        android:id="@+id/subjectGroup"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
-                        <RadioButton
-                            android:id="@+id/radioMath"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/boarders"
-                            android:drawableRight="@drawable/math_formula_svgrepo_com"
-                            android:text="Mathematics"
-                            android:paddingVertical="15dp"
-                            android:paddingHorizontal="15dp"
-                            android:layout_marginTop="10dp" />
-                        <RadioButton
-                            android:id="@+id/radioScience"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/boarders"
-                            android:drawableRight="@drawable/science_svgrepo_com"
-                            android:text="Science"
-                            android:paddingVertical="15dp"
-                            android:paddingHorizontal="15dp"
-                            android:layout_marginTop="10dp" />
-                        <RadioButton
-                            android:id="@+id/radioEnglish"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/boarders"
-                            android:drawableRight="@drawable/science_svgrepo_com"
-                            android:text="English"
-                            android:paddingVertical="15dp"
-                            android:paddingHorizontal="15dp"
-                            android:layout_marginTop="10dp" />
-                    </RadioGroup>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_marginHorizontal="20dp"
-                app:cardCornerRadius="15dp">
-
-                <LinearLayout
+                <AutoCompleteTextView
+                    android:id="@+id/subjectAutoComplete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="25dp"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="15dp">
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="Select Date"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-                    <CalendarView
-                        android:id="@+id/calendarView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:nestedScrollingEnabled="false" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
+            <!-- Select Date Picker Field -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                app:cardCornerRadius="15dp"
-                android:layout_marginTop="20dp">
-                <LinearLayout
+                android:layout_marginTop="20dp"
+                android:hint="Select Date">
+
+                <AutoCompleteTextView
+                    android:id="@+id/dateAutoComplete"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="10dp"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:text="Select a Tutor"/>
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-                        <AutoCompleteTextView
-                            android:id="@+id/tutorAutoComplete"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Select Tutor"
-                            android:inputType="none"/>
-                    </com.google.android.material.textfield.TextInputLayout>
+            <!-- Select Tutor Dropdown -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:hint="Select Tutor">
 
-                    <TextView
-                        android:id="@+id/tutorBioText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text=""
-                        android:textSize="14sp"
-                        android:textStyle="italic"
-                        android:visibility="gone"/>
+                <AutoCompleteTextView
+                    android:id="@+id/tutorAutoComplete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            <!-- Tutor Bio Display -->
+            <TextView
+                android:id="@+id/tutorBioText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="8dp"
+                android:textColor="#666666"
+                android:textSize="14sp"
+                android:visibility="gone"
+                tools:text="Tutor bio will appear here..." />
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBookNow"

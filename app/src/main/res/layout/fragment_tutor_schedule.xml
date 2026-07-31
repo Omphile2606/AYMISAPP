@@ -63,7 +63,7 @@
             app:cardElevation="2dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="310dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="20dp">
@@ -71,43 +71,60 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="Select Student"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp"/>
+                    android:textStyle="bold" />
 
                 <AutoCompleteTextView
                     android:id="@+id/studentAutoComplete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:completionThreshold="1"
                     android:hint="Search for a student"
-                    android:padding="12dp"
-                    android:completionThreshold="1"/>
+                    android:padding="12dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Select Subject"
-                    android:textStyle="bold"
                     android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginBottom="8dp"
+                    android:text="Select Subject"
+                    android:textStyle="bold" />
 
                 <RadioGroup
                     android:id="@+id/tutorSubjectGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                    <RadioButton android:id="@+id/rbMath" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Math" android:layout_marginEnd="10dp"/>
-                    <RadioButton android:id="@+id/rbPhysics" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Physics" android:layout_marginEnd="10dp"/>
-                    <RadioButton android:id="@+id/rbBiology" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Biology"/>
+
+                    <RadioButton
+                        android:id="@+id/rbMath"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:text="Math" />
+
+                    <RadioButton
+                        android:id="@+id/rbPhysics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:text="Physics" />
+
+                    <RadioButton
+                        android:id="@+id/rbBiology"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Biology" />
                 </RadioGroup>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Select Date"
-                    android:textStyle="bold"
                     android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginBottom="8dp"
+                    android:text="Select Date"
+                    android:textStyle="bold" />
 
                 <CalendarView
                     android:id="@+id/scheduleCalendar"
@@ -118,11 +135,11 @@
                     android:id="@+id/btnScheduleLesson"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Schedule Lesson"
-                    android:backgroundTint="@color/btn"
-                    android:textColor="@color/white"
                     android:layout_marginTop="24dp"
-                    android:padding="12dp"/>
+                    android:backgroundTint="@color/btn"
+                    android:padding="12dp"
+                    android:text="Schedule Lesson"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

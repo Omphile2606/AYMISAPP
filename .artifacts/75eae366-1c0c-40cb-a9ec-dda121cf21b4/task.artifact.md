@@ -1,0 +1,3 @@
+- [x] Update `strings.xml` with subject array
+- [x] Update `fragment_booking.xml` with Material Dropdowns
+- [x] Update `BookingFragment.kt` logic to handle dropdowns and date picker

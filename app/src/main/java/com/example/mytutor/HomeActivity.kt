@@ -71,8 +71,8 @@ class HomeActivity : AppCompatActivity() {
                         }
                     }
                 }
-                R.id.profile -> {
-                    // replaceFragment(ProfileFragment())
+                R.id.bookTutor -> {
+                    replaceFragment(FindTutorFragment())
                     true
                 }
                 else -> false

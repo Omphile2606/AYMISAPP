@@ -3,15 +3,16 @@
 
     <item android:id="@+id/home"
         android:icon="@drawable/outline_cabin_24"
-        android:title="home"/>
+        android:title="Home"/>
     <item android:id="@+id/leason"
         android:icon="@drawable/outline_assignment_24"
-        android:title="Booking"/>
+        android:title="Book a Session"/>
+
+    <item android:id="@+id/bookTutor"
+        android:icon="@drawable/outline_account_circle_24"
+        android:title="Book a Tutor"/>
     <item android:id="@+id/stats"
         android:icon="@drawable/outline_bar_chart_24"
-        android:title="stats"/>
-    <item android:id="@+id/profile"
-        android:icon="@drawable/outline_account_circle_24"
-        android:title="profile"/>
+        android:title="My Peformance"/>
 
 </menu>

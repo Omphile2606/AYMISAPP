@@ -14,138 +14,97 @@
         android:orientation="vertical">
 
         <!-- Header -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"
-            android:layout_marginHorizontal="40dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="EduPortal"
-                android:textColor="@color/btn"
-                android:textSize="25sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="110dp"
-                android:drawableLeft="@drawable/outline_account_circle_24"
-                android:textSize="25sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:drawableLeft="@drawable/outline_chat_bubble_24"
-                android:textSize="25sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:drawableLeft="@drawable/outline_account_circle_24"
-                android:textSize="25sp" />
-
-        </LinearLayout>
-
-        <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="38dp"
-            android:layout_marginStart="40dp"
-            android:text="Find Your Perfect Tutor"
-            android:textColor="@color/btn"
-            android:textSize="32sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
-            android:text="Choose from our curated selection of top-rated academic mentors. Every tutor is carefully vetted."
-            android:textSize="20sp" />
-
-        <!-- Filters Card -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
             android:layout_marginHorizontal="20dp"
-            app:cardCornerRadius="15dp">
+            android:layout_marginTop="20dp"
+            android:text="Find a Tutor"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="34sp" />
 
-            <LinearLayout
+        <!-- Select Subject -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Select Subject"/>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:hint="Select Subject">
+
+            <AutoCompleteTextView
+                android:id="@+id/subjectAutoComplete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="25dp"
-                android:orientation="vertical"
-                android:paddingHorizontal="15dp">
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Subject -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="15dp"
-                    android:text="Subject"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+        <!-- Select Location -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Select Location"/>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:hint="Select Location">
 
-                <Spinner
-                    android:id="@+id/subjectSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp" />
+            <AutoCompleteTextView
+                android:id="@+id/locationAutoComplete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Location -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="15dp"
-                    android:text="Location"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Select Date"/>
 
-                <Spinner
-                    android:id="@+id/locationSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp" />
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:hint="Select Date">
 
-                <!-- Grade -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="15dp"
-                    android:textStyle="bold"
-                    android:text="Grade"
-                    android:textSize="20sp" />
+            <AutoCompleteTextView
+                android:id="@+id/dateAutoComplete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <Spinner
-                    android:id="@+id/gradeSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnApplyFilters"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="40dp"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="@color/btn"
-                    android:textStyle="bold"
-                    android:text="Apply Filters"
-                    app:cornerRadius="5dp" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/filterButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginVertical="20dp"
+            android:text="APPLY FILTER"
+            app:cornerRadius="5dp"
+            android:layout_marginHorizontal="20dp"/>
         <!-- Available Tutors Card -->
 
 
@@ -165,14 +124,6 @@
                 android:paddingHorizontal="15dp">
 
                 <!-- Available Tutors -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="20dp"
-                    android:text="Available Tutors"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/timeTable"

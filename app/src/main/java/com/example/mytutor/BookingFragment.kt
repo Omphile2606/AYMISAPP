@@ -1,11 +1,12 @@
 package com.example.mytutor
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.mytutor.databinding.FragmentBookingBinding
@@ -27,11 +28,24 @@ class BookingFragment : Fragment() {
         
         // Set default date
         val calendar = Calendar.getInstance()
-        selectedDate = "${calendar.get(Calendar.DAY_OF_MONTH)}/${calendar.get(Calendar.MONTH) + 1}/${calendar.get(Calendar.YEAR)}"
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        
+        selectedDate = "$day/${month + 1}/$year"
+        binding.dateAutoComplete.setText(selectedDate)
 
-        binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            selectedDate = "$dayOfMonth/${month + 1}/$year"
+        binding.dateAutoComplete.setOnClickListener {
+            DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, selectedDay ->
+                selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                binding.dateAutoComplete.setText(selectedDate)
+            }, year, month, day).show()
         }
+
+        // Setup Subject Dropdown
+        val subjects = resources.getStringArray(R.array.subjects_array)
+        val subjectAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, subjects)
+        binding.subjectAutoComplete.setAdapter(subjectAdapter)
 
         // Setup Tutor Dropdown with Bio
         val tutors = databaseHelper.getAllTutorsWithBio()
@@ -46,10 +60,10 @@ class BookingFragment : Fragment() {
         }
 
         binding.btnBookNow.setOnClickListener {
-            val selectedSubjectId = binding.subjectGroup.checkedRadioButtonId
+            val subject = binding.subjectAutoComplete.text.toString().trim()
             val tutorName = binding.tutorAutoComplete.text.toString().trim()
 
-            if (selectedSubjectId == -1) {
+            if (subject.isEmpty()) {
                 Toast.makeText(requireContext(), "Please select a subject", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -58,9 +72,6 @@ class BookingFragment : Fragment() {
                 Toast.makeText(requireContext(), "Please select a tutor", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
-            val radioButton = binding.root.findViewById<RadioButton>(selectedSubjectId)
-            val subject = radioButton.text.toString()
 
             // Retrieve student name from SharedPreferences
             val sharedPreferences = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
