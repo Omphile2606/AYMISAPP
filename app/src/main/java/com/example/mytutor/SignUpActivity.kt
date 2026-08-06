@@ -46,9 +46,9 @@ class SignUpActivity : AppCompatActivity() {
             updateRoleSelection("Tutor")
         }
 
-        binding.admin.setOnClickListener {
-            updateRoleSelection("Admin")
-        }
+//        binding.admin.setOnClickListener {
+//            updateRoleSelection("Admin")
+//        }
 
         binding.loginBtn.setOnClickListener {
             val fullName = binding.fullName.text.toString().trim()
@@ -69,6 +69,11 @@ class SignUpActivity : AppCompatActivity() {
             val finalBio = if (selectedRole == "Tutor") bio else ""
             val status = if (selectedRole == "Admin") "Approved" else "Approved"
 
+            if (databaseHelper.isEmailExists(email)) {
+                Toast.makeText(this, "Email already registered. Please login.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val result = databaseHelper.addUser(fullName, email, password, selectedRole, finalBio, status)
             if (result != -1L) {
                 Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
@@ -76,7 +81,7 @@ class SignUpActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             } else {
-                Toast.makeText(this, "Registration failed (email might exist)", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Registration failed due to a system error", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -94,8 +99,8 @@ class SignUpActivity : AppCompatActivity() {
         binding.student.setTextColor(defaultText)
         binding.tutor.backgroundTintList = defaultBg
         binding.tutor.setTextColor(defaultText)
-        binding.admin.backgroundTintList = defaultBg
-        binding.admin.setTextColor(defaultText)
+//        binding.admin.backgroundTintList = defaultBg
+//        binding.admin.setTextColor(defaultText)
 
         // Highlight selected
         when (role) {
@@ -110,8 +115,8 @@ class SignUpActivity : AppCompatActivity() {
                 binding.bioLayout.visibility = View.VISIBLE
             }
             "Admin" -> {
-                binding.admin.backgroundTintList = selectedBg
-                binding.admin.setTextColor(selectedText)
+//                binding.admin.backgroundTintList = selectedBg
+//                binding.admin.setTextColor(selectedText)
                 binding.bioLayout.visibility = View.GONE
             }
         }

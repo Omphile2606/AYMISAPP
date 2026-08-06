@@ -1,49 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F9FA">
+    android:background="#F8F9FA"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginHorizontal="40dp"
+        android:layout_marginHorizontal="0dp"
         android:layout_marginVertical="0dp"
-        android:padding="24dp">
+        android:padding="24dp"
+        android:paddingBottom="80dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="17dp"
+            android:layout_marginHorizontal="30dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textColor="@color/btn"
-                android:textStyle="bold"
                 android:text="AYIMS"
-                android:textSize="25sp"/>
+                android:textStyle="bold"
+                android:textSize="22sp"/>
 
             <TextView
+                android:id="@+id/chatIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:layout_marginStart="90dp"
-                android:drawableLeft="@drawable/outline_account_circle_24"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:layout_marginStart="16dp"
-                android:drawableLeft="@drawable/outline_chat_bubble_24"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:layout_marginStart="16dp"
-                android:drawableLeft="@drawable/outline_account_circle_24"/>
+                android:padding="8dp"
+                app:drawableStartCompat="@drawable/outline_chat_bubble_24"
+                app:drawableTint="@color/black"/>
 
+            <TextView
+                android:id="@+id/profileIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:drawableStartCompat="@drawable/outline_account_circle_24"
+                app:drawableTint="@color/black"/>
         </LinearLayout>
 
 
@@ -63,25 +66,26 @@
             app:cardElevation="2dp">
 
             <LinearLayout
-                android:layout_width="310dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="Select Student"
-                    android:textStyle="bold" />
-
-                <AutoCompleteTextView
-                    android:id="@+id/studentAutoComplete"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:completionThreshold="1"
-                    android:hint="Search for a student"
-                    android:padding="12dp" />
+                    android:layout_marginBottom="16dp"
+                    android:hint="Select Student">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/studentAutoComplete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:padding="12dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -145,4 +149,4 @@
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

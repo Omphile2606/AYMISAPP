@@ -10,7 +10,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     companion object {
         private const val DATABASE_NAME = "MyTutor.db"
-        private const val DATABASE_VERSION = 9 // Incremented to 9 to add location column
+        private const val DATABASE_VERSION = 10 // Incremented to 10 to ensure location column is added for all users
 
         // User table
         const val TABLE_USERS = "users"
@@ -42,7 +42,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 + COLUMN_PASSWORD + " TEXT,"
                 + COLUMN_ROLE + " TEXT,"
                 + COLUMN_BIO + " TEXT,"
-                + COLUMN_STATUS + " TEXT" + ")")
+                + COLUMN_STATUS + " TEXT,"
+                + COLUMN_LOCATION + " TEXT" + ")")
         
         val createBookingTable = ("CREATE TABLE " + TABLE_BOOKINGS + "("
                 + COLUMN_BOOKING_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -130,7 +131,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 Log.e("DatabaseHelper", "Error adding attendance column: ${e.message}")
             }
         }
-        if (oldVersion < 9) {
+        if (oldVersion < 10) {
             try {
                 addColumnIfNotExists(db, TABLE_USERS, COLUMN_LOCATION, "TEXT")
             } catch (e: Exception) {
@@ -167,7 +168,17 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         values.put(COLUMN_BIO, bio)
         values.put(COLUMN_STATUS, status)
         values.put(COLUMN_LOCATION, location)
-        return db.insert(TABLE_USERS, null, values)
+        
+        return try {
+            val result = db.insert(TABLE_USERS, null, values)
+            if (result == -1L) {
+                Log.e("DatabaseHelper", "Failed to insert user: $email")
+            }
+            result
+        } catch (e: Exception) {
+            Log.e("DatabaseHelper", "Error inserting user: ${e.message}")
+            -1L
+        }
     }
 
     fun approveUser(email: String): Int {
@@ -242,6 +253,14 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
         cursor.close()
         return user
+    }
+
+    fun isEmailExists(email: String): Boolean {
+        val db = this.readableDatabase
+        val cursor = db.query(TABLE_USERS, arrayOf(COLUMN_ID), "$COLUMN_EMAIL = ?", arrayOf(email), null, null, null)
+        val exists = cursor.count > 0
+        cursor.close()
+        return exists
     }
 
     data class User(val fullName: String, val email: String, val role: String, val bio: String = "", val status: String = "Approved", val location: String = "")
@@ -402,5 +421,19 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
         cursor.close()
         return bio
+    }
+
+    /**
+     * Explicitly opens and returns a writable database connection.
+     */
+    fun openDatabase(): SQLiteDatabase {
+        return this.writableDatabase
+    }
+
+    /**
+     * Explicitly closes the database connection.
+     */
+    fun closeDatabase() {
+        this.close()
     }
 }

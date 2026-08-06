@@ -1,0 +1,5 @@
+- [x] Fix database schema in `DatabaseHelper.kt`
+- [x] Add `isEmailExists` check to `DatabaseHelper.kt`
+- [x] Update `SignUpActivity.kt` with better validation and error messages
+- [x] Verify changes (Build success)
+- [x] Increment database version to 10 and improve error logging

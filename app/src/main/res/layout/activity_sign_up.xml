@@ -98,18 +98,18 @@
                         app:backgroundTint="#00FFFFFF"
                         app:cornerRadius="6dp" />
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/admin"
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:drawableTop="@drawable/outline_assignment_24"
-                        android:padding="0dp"
-                        android:text="Admin"
-                        android:textColor="@color/btn"
-                        android:textSize="12sp"
-                        app:backgroundTint="#00FFFFFF"
-                        app:cornerRadius="6dp" />
+<!--                    <com.google.android.material.button.MaterialButton-->
+<!--                        android:id="@+id/admin"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="90dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:drawableTop="@drawable/outline_assignment_24"-->
+<!--                        android:padding="0dp"-->
+<!--                        android:text="Admin"-->
+<!--                        android:textColor="@color/btn"-->
+<!--                        android:textSize="12sp"-->
+<!--                        app:backgroundTint="#00FFFFFF"-->
+<!--                        app:cornerRadius="6dp" />-->
 
 
                 </LinearLayout>
