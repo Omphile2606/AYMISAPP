@@ -114,51 +114,12 @@
             app:cardCornerRadius="16dp"
             app:cardElevation="2dp">
             <LinearLayout
+                android:id="@+id/subjectDistributionContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mathematics"
-                    android:textSize="14sp"/>
-                <ProgressBar
-                    android:id="@+id/tutorMathProgress"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="8dp"
-                    android:progress="0"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="16dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Science"
-                    android:textSize="14sp"/>
-                <ProgressBar
-                    android:id="@+id/tutorScienceProgress"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="8dp"
-                    android:progress="0"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="16dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="English"
-                    android:textSize="14sp"/>
-                <ProgressBar
-                    android:id="@+id/tutorEnglishProgress"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="8dp"
-                    android:progress="0"
-                    android:layout_marginTop="8dp"/>
+                <!-- Dynamic subject rows will be added here -->
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

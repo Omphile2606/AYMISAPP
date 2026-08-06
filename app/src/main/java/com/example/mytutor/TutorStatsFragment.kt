@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -47,14 +50,27 @@ class TutorStatsFragment : Fragment() {
         binding.totalEarnings.text = "$$estimatedEarnings"
 
         // Subject Distribution Stats
-        val total = if (bookings.isNotEmpty()) bookings.size.toFloat() else 1f
-        val mathCount = bookings.count { it.subject.contains("Math", ignoreCase = true) }
-        val scienceCount = bookings.count { it.subject.contains("Science", ignoreCase = true) }
-        val englishCount = bookings.count { it.subject.contains("English", ignoreCase = true) }
+        binding.subjectDistributionContainer.removeAllViews()
+        if (bookings.isNotEmpty()) {
+            val total = bookings.size.toFloat()
+            val subjectsMap = bookings.groupBy { it.subject }
 
-        binding.tutorMathProgress.progress = ((mathCount / total) * 100).toInt()
-        binding.tutorScienceProgress.progress = ((scienceCount / total) * 100).toInt()
-        binding.tutorEnglishProgress.progress = ((englishCount / total) * 100).toInt()
+            for ((subject, sessions) in subjectsMap) {
+                val itemView = layoutInflater.inflate(R.layout.item_subject_progress, binding.subjectDistributionContainer, false)
+                val nameText = itemView.findViewById<TextView>(R.id.subjectNameText)
+                val progressBar = itemView.findViewById<ProgressBar>(R.id.subjectProgressBar)
+                
+                nameText.text = subject
+                progressBar.progress = ((sessions.size / total) * 100).toInt()
+                binding.subjectDistributionContainer.addView(itemView)
+            }
+        } else {
+            val emptyText = TextView(requireContext())
+            emptyText.text = "No sessions taught yet."
+            emptyText.textAlignment = View.TEXT_ALIGNMENT_CENTER
+            emptyText.setPadding(0, 40, 0, 40)
+            binding.subjectDistributionContainer.addView(emptyText)
+        }
 
         val adapter = SessionAdapter(requireContext(), bookings, isTutor = true)
         binding.tutorStatsListView.adapter = adapter
