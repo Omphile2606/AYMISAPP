@@ -99,27 +99,10 @@
                     android:id="@+id/tutorSubjectGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <RadioButton
-                        android:id="@+id/rbMath"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:text="Math" />
+                    <!-- Dynamic RadioButtons will be added here -->
 
-                    <RadioButton
-                        android:id="@+id/rbPhysics"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:text="Physics" />
-
-                    <RadioButton
-                        android:id="@+id/rbBiology"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Biology" />
                 </RadioGroup>
 
                 <TextView

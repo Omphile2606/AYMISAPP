@@ -423,6 +423,17 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return bio
     }
 
+    fun getUserPassword(email: String): String? {
+        val db = this.readableDatabase
+        val cursor = db.query(TABLE_USERS, arrayOf(COLUMN_PASSWORD), "$COLUMN_EMAIL = ?", arrayOf(email), null, null, null)
+        var password: String? = null
+        if (cursor.moveToFirst()) {
+            password = cursor.getString(0)
+        }
+        cursor.close()
+        return password
+    }
+
     /**
      * Explicitly opens and returns a writable database connection.
      */

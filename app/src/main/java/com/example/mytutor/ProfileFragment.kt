@@ -35,6 +35,10 @@ class ProfileFragment : Fragment() {
             saveProfileChanges()
         }
 
+        binding.btnBack.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+
         binding.btnLogout.setOnClickListener {
             logout()
         }
@@ -73,15 +77,15 @@ class ProfileFragment : Fragment() {
         }
 
         // If password field is empty, keep existing password. 
-        // For simplicity in this demo, we'll require a password or fetch existing if empty.
-        val user = databaseHelper.getUser(userEmail)
         val finalPassword = if (password.isEmpty()) {
-            // Need a way to get password from DB since getUser doesn't return it in the User data class
-            // Let's assume for this project we use a simplified approach
-            Toast.makeText(requireContext(), "Please re-enter your password to confirm changes", Toast.LENGTH_SHORT).show()
-            return
+            databaseHelper.getUserPassword(userEmail) ?: ""
         } else {
             password
+        }
+
+        if (finalPassword.isEmpty()) {
+            Toast.makeText(requireContext(), "Error retrieving user security data", Toast.LENGTH_SHORT).show()
+            return
         }
 
         val result = databaseHelper.updateUser(userEmail, fullName, bio, finalPassword)

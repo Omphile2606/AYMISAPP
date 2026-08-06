@@ -39,6 +39,9 @@ class TutorScheduleFragment : Fragment() {
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, students)
         binding.studentAutoComplete.setAdapter(adapter)
 
+        // Setup Dynamic Subjects
+        setupDynamicSubjects()
+
         binding.btnScheduleLesson.setOnClickListener {
             val studentName = binding.studentAutoComplete.text.toString().trim()
             val selectedSubjectId = binding.tutorSubjectGroup.checkedRadioButtonId
@@ -77,6 +80,55 @@ class TutorScheduleFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun setupDynamicSubjects() {
+        val sharedPreferences = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        val tutorName = sharedPreferences.getString("userName", "") ?: ""
+        
+        val tutorBio = databaseHelper.getTutorBio(tutorName)
+        val pastBookings = databaseHelper.getBookingsForTutor(tutorName)
+        val allPossibleSubjects = resources.getStringArray(R.array.subjects_array)
+
+        val tutorSubjects = mutableSetOf<String>()
+
+        // 1. Add subjects from past bookings
+        pastBookings.forEach { tutorSubjects.add(it.subject) }
+
+        // 2. Add subjects mentioned in bio
+        allPossibleSubjects.forEach { subject ->
+            if (tutorBio.contains(subject, ignoreCase = true)) {
+                tutorSubjects.add(subject)
+            }
+        }
+
+        // If no subjects found, provide a default or use bio keywords more aggressively
+        if (tutorSubjects.isEmpty()) {
+            // Fallback: If bio contains "Math" but array has "Mathematics", try to match
+            if (tutorBio.contains("Math", ignoreCase = true)) tutorSubjects.add("Mathematics")
+            if (tutorBio.contains("Science", ignoreCase = true)) tutorSubjects.add("Science")
+            if (tutorBio.contains("English", ignoreCase = true)) tutorSubjects.add("English")
+        }
+
+        // Create RadioButtons
+        binding.tutorSubjectGroup.removeAllViews()
+        tutorSubjects.forEach { subject ->
+            val rb = RadioButton(requireContext())
+            rb.text = subject
+            rb.id = View.generateViewId()
+            val params = ViewGroup.MarginLayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            params.setMargins(0, 0, 0, 8)
+            rb.layoutParams = params
+            binding.tutorSubjectGroup.addView(rb)
+        }
+        
+        // Select first one by default if any exist
+        if (binding.tutorSubjectGroup.childCount > 0) {
+            (binding.tutorSubjectGroup.getChildAt(0) as RadioButton).isChecked = true
+        }
     }
 
     override fun onDestroyView() {
