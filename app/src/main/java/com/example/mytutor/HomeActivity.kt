@@ -23,6 +23,10 @@ class HomeActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
         userRole = sharedPreferences.getString("userRole", "Student")
 
+        if (userRole == "Tutor" || userRole == "Admin") {
+            binding.bottomNavigation.menu.findItem(R.id.bookTutor)?.isVisible = false
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
