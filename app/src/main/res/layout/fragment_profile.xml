@@ -26,7 +26,7 @@
                 android:layout_marginStart="0dp"
                 android:contentDescription="Go Back"
                 android:foregroundTint="#000000"
-                android:text="M"
+                android:text=""
                 app:backgroundTint="#FFFFFF"
                 app:cornerRadius="0dp"
                 app:icon="@drawable/left_arrow_svgrepo_com" />
